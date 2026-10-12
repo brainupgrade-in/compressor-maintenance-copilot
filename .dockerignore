@@ -1,0 +1,11 @@
+data/
+.venv/
+.git/
+.env
+.env.*
+!.env.example
+__pycache__/
+CLAUDE.md
+.claude/
+submission/
+tests/

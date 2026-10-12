@@ -1,0 +1,22 @@
+[project]
+name = "compressor-copilot"
+version = "0.1.0"
+description = "Maintenance copilot: early compressor fault warnings explained by an open model on AMD"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+dependencies = [
+  "pandas>=2.2",
+  "numpy>=1.26",
+  "scikit-learn>=1.5",
+  "streamlit>=1.38",
+  "requests>=2.32",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.setuptools]
+packages = ["copilot"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

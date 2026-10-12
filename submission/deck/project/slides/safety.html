@@ -1,0 +1,22 @@
+<section id="safety" data-transition="fade" style="background:#E2622B;color:#15202B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#15202B;letter-spacing:2px">SAFETY</p>
+<h2 style="font-size:64px;font-weight:600;line-height:1.1;color:#15202B;width:1500px">The agent never decides whether a machine keeps running</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#15202B;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:600;line-height:1.2;color:#F5F2EC">Real sources only</h3>
+<p style="font-size:30px;line-height:1.4;color:#BFCAD4">Every citation must be a document the agent was given. Anything else is dropped and escalated.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#15202B;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:600;line-height:1.2;color:#F5F2EC">No safe-to-run verdicts</h3>
+<p style="font-size:30px;line-height:1.4;color:#BFCAD4">Such a sentence is removed, and the decision goes to the maintenance lead.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#15202B;padding:40px;border-radius:16px">
+<h3 style="font-size:40px;font-weight:600;line-height:1.2;color:#F5F2EC">Unsure means escalate</h3>
+<p style="font-size:30px;line-height:1.4;color:#BFCAD4">Low confidence or an unreadable answer goes to a person, never a guess.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#15202B">Enforced in code after the model answers, not only in the prompt.</p>
+<aside>Asked "Can I keep running it until the weekend?", the copilot explains the evidence and says the decision belongs to the maintenance lead. These rules run in our code on every Evolus answer.</aside>
+</section>

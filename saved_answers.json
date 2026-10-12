@@ -1,0 +1,224 @@
+{
+ "2020-04-17 10:00:00": {
+  "result": {
+   "explanation": "The detector shows a very high number of compressor starts (9 per 10 min vs normal 0, z=16.3) along with main reservoir and pneumatic panel pressures both averaging ~0.77 bar lower than normal. This pattern matches the air-leak/backflow fault signature in the manual: more starts per hour and lower TP3/Reservoir pressures. The motor current standard deviation being near zero is slightly unusual, but the dominant leak symptoms clearly point to a downstream leak or worn check valve.",
+   "likely_cause": "Air leak downstream of the reservoirs, or a worn check valve seat allowing back-flow when unloaded (a worn check valve looks like a leak on the sensors).",
+   "confidence": 0.7,
+   "urgency": "high",
+   "checks": [
+    "With consumers isolated, time pressure decay from 10 to 8 bar; more than 2 bar in 10 minutes confirms a leak.",
+    "Use ultrasonic leak detector or soap test on pipe joints, drain valves)Skip and the check valve (CV-30).",
+    "Listen at unload for air back-flow through the check valve.",
+    "Inspect the dryer purge valve.",
+    "Check the reservoir auto-drain valve (DV-12) for being stuck open."
+   ],
+   "citations": [
+    "manual#3.1",
+    "WO-2020-047",
+    "WO-2019-114",
+    "manual#2"
+   ],
+   "work_order": {
+    "title": "Investigate air leak / check valve back-flow on APU-300",
+    "priority": "High",
+    "checks": [
+     "Pressure decay test with consumers isolated (10 to 8 bar).",
+     "Soap/ultrasonic test on joints, drain valves and check valve.",
+     "Listen at unload for check valve back-flow.",
+     "Inspect dryer purge valve and auto-drain valve."
+    ],
+    "parts": [
+     "CV-30 check valve",
+     "DV-12 auto-drain valve"
+    ]
+   },
+   "escalate": false,
+   "escalate_reason": "",
+   "sources": [
+    {
+     "id": "manual#3.1",
+     "title": "Air leak (most common fault)"
+    },
+    {
+     "id": "manual#2",
+     "title": "Sensors and signals"
+    },
+    {
+     "id": "WO-2020-047",
+     "title": "WO-2020-047 \u2014 Check valve seat worn, reservoir pressure drop between cycles (SYNTHETIC)"
+    },
+    {
+     "id": "WO-2019-114",
+     "title": "WO-2019-114 \u2014 Air leak at reservoir drain valve (SYNTHETIC)"
+    }
+   ]
+  },
+  "recorded": "2026-10-13",
+  "via": "Evolus workflow"
+ },
+ "2020-05-26 09:50:00": {
+  "result": {
+   "explanation": "The detector shows a very high start rate (9 starts per 10 min vs normal 0, z=16.3) along with both TP3 and reservoir pressure running about 0.85 bar below normal steadystate, with no motor-current variability from continuous running. This pattern matches the air-leak family of faults in the manual, where a worn check-valve seat or a stuck drain valve lets reservoir pressure bleed back and forces frequent starts.",
+   "likely_cause": "Air leak downstream of the reservoirs \u2014 most likely a worn check-valve seat (back-flow at unload) or a reservoir auto-drain valve stuck open.",
+   "confidence": 0.7,
+   "urgency": "high",
+   "checks": [
+    "With consumers isolated, time the pressure decay from 10 to 8 bar; more than 2 bar in 10 minutes confirms a leak.",
+    "Listen at unload for air back-flow through the check valve (as in WO-2020-047).",
+    "Soap-test or use an ultrasonic detector on joints, the check valve, and the reservoir auto-drain valve.",
+    "Inspect the dryer purge valve for leakage.",
+    "Correlate with duty cycle; if it exceeds 70%, treat as high severity."
+   ],
+   "citations": [
+    "manual#3.1",
+    "WO-2020-047",
+    "WO-2019-114"
+   ],
+   "work_order": {
+    "title": "Investigate and repair air leak on APU-300 (frequent starts, low reservoir pressure)",
+    "priority": "high",
+    "checks": [
+     "Run pressure decay test with consumers isolated (10\u21928 bar).",
+     "Soap/ultrasonic test check valve, drain valves, joints, dryer purge.",
+     "Listen at unload for check-valve back-flow.",
+     "Replace the leaking part found (check valve CV-30 or auto-drain valve DV-12)."
+    ],
+    "parts": [
+     "CV-30 check valve",
+     "DV-12 auto-drain valve"
+    ]
+   },
+   "escalate": true,
+   "escalate_reason": "Start rate is extremely elevated (z=16.3) and pressures have dropped ~0.85 bar below normal; while this matches a known air-leak fault, the specific leaking component (check valve vs drain valve vs hose joint) has not been isolated and the severity could be high, so field inspection is required before the maintenance lead's go/no-go decision.",
+   "sources": [
+    {
+     "id": "manual#3.1",
+     "title": "Air leak (most common fault)"
+    },
+    {
+     "id": "manual#2",
+     "title": "Sensors and signals"
+    },
+    {
+     "id": "WO-2020-047",
+     "title": "WO-2020-047 \u2014 Check valve seat worn, reservoir pressure drop between cycles (SYNTHETIC)"
+    },
+    {
+     "id": "WO-2019-114",
+     "title": "WO-2019-114 \u2014 Air leak at reservoir drain valve (SYNTHETIC)"
+    }
+   ]
+  },
+  "recorded": "2026-10-13",
+  "via": "Evolus workflow"
+ },
+ "2020-06-01 15:20:00": {
+  "result": {
+   "explanation": "The detector shows H1 (pressure after the separator) is dramatically below normal while TP2 (compressor outlet) is elevated during loading, and duty cycle is pinned at 100%. This is the classic separator/filter restriction signature: a blocked separator raises outlet pressure while starving downstream pressure the compressor keeps loading. The elevated DV_pressure is secondary to the overall system being under pressure/strain.",
+   "likely_cause": "Separator/cyclonic filter element restriction (blockage), causing pressure drop across the separator",
+   "confidence": 0.72,
+   "urgency": "high",
+   "checks": [
+    "Compare H1 vs TP3 gap while loading; restriction confirmed if the drop exceeds 0.5 bar",
+    "Inspect the separator/cyclonic filter element for clogging and check element service hours",
+    "Check for oil carry-over and inspect oil level",
+    "Monitor oil temperature for rise above 75\u00b0C",
+    "Rule out a large air leak with a pressure decay test (10 to 8 bar) with consumers isolated"
+   ],
+   "citations": [
+    "manual#3.2",
+    "manual#2"
+   ],
+   "work_order": {
+    "title": "Replace separator/cyclonic filter element - suspected restriction",
+    "priority": "high",
+    "checks": [
+     "Inspect and replace separator element / cyclonic filter",
+     "Check oil carry-over and top up oil if needed",
+     "Verify H1-to-TP3 gap returns to normal after replacement",
+     "Confirm duty cycle drops back to the 20-45% range"
+    ],
+    "parts": [
+     "separator element / cyclonic filter"
+    ]
+   },
+   "escalate": true,
+   "escalate_reason": "Duty cycle is at 100% and the pressure-drop signature strongly indicates a separator restriction; running a severely restricted system risks overheating and oil carry-over, requiring lead decision on continued operation.; model cited documents it was not given",
+   "sources": [
+    {
+     "id": "manual#2",
+     "title": "Sensors and signals"
+    },
+    {
+     "id": "manual#3.2",
+     "title": "Separator or filter restriction"
+    },
+    {
+     "id": "manual#3.1",
+     "title": "Air leak (most common fault)"
+    },
+    {
+     "id": "WO-2020-047",
+     "title": "WO-2020-047 \u2014 Check valve seat worn, reservoir pressure drop between cycles (SYNTHETIC)"
+    }
+   ]
+  },
+  "recorded": "2026-10-13",
+  "via": "Evolus workflow"
+ },
+ "2020-06-03 10:40:00": {
+  "result": {
+   "explanation": "H1 has collapsed to near zero while TP2 is elevated, which is the classic signature of a separator/filter restriction blocking air flow. Duty cycle is at 100% because the compressor never reaches cut-out, and DV_pressure is abnormally high (z=13.4), which separately points to a dryer tower/purge valve fault. The pattern is a combination of restriction and dryer-signal anomalies rather than a single clean fault.",
+   "likely_cause": "Separator/cyclonic filter element restriction (with a concurrent dryer tower/purge valve anomaly indicated by the elevated DV_pressure)",
+   "confidence": 0.6,
+   "urgency": "high",
+   "checks": [
+    "Compare H1 against TP3 while loaded to confirm the restriction gap exceeds 0.5 bar.",
+    "Inspect and if needed replace the separator element / cyclonic filter.",
+    "Check the dryer purge valve and tower solenoid switching, and look for DV_pressure spikes outside normal tower changeover.",
+    "Check for oil carry-over and oil temperature trend.",
+    "Verify tower alternation signal and moisture in the outlet lines."
+   ],
+   "citations": [
+    "manual#3.2",
+    "manual#2"
+   ],
+   "work_order": {
+    "title": "APU-300 - separator restriction with dryer DV_pressure anomaly; compressor running continuously",
+    "priority": "high",
+    "checks": [
+     "Replace separator element / cyclonic filter and verify H1-TP3 gap returns below 0.5 bar.",
+     "Inspect dryer purge valve and tower solenoids; replace purge valve diaphragm if DV_pressure spikes outside changeover.",
+     "Confirm duty cycle returns toward 20-45% after repairs.",
+     "Monitor oil temperature and check for oil carry-over."
+    ],
+    "parts": [
+     "Separator element",
+     "Dryer purge valve diaphragm"
+    ]
+   },
+   "escalate": true,
+   "escalate_reason": "Evidence shows two concurrent anomalies (separator restriction and elevated DV_pressure) that together do not map cleanly to a single known fault; the DV_pressure signal (z=13.4) is unusually strong and may indicate a secondary dryer fault requiring a maintenance lead decision.; model cited documents it was not given",
+   "sources": [
+    {
+     "id": "manual#2",
+     "title": "Sensors and signals"
+    },
+    {
+     "id": "manual#3.2",
+     "title": "Separator or filter restriction"
+    },
+    {
+     "id": "manual#3.1",
+     "title": "Air leak (most common fault)"
+    },
+    {
+     "id": "WO-2020-047",
+     "title": "WO-2020-047 \u2014 Check valve seat worn, reservoir pressure drop between cycles (SYNTHETIC)"
+    }
+   ]
+  },
+  "recorded": "2026-10-13",
+  "via": "Evolus workflow"
+ }
+}

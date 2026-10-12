@@ -1,0 +1,66 @@
+# The Evolus website widget, served from the demo's own host at /widget/ so its origin passes the
+# widget's allowed-domains list (a Streamlit components.html frame has origin "null"). The app embeds it.
+# The data-token is public by design: it is what any page embedding the widget carries.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: widget-html
+  namespace: compressor-copilot
+data:
+  index.html: |
+    <!doctype html>
+    <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compressor Copilot chat</title>
+    <style>html,body{margin:0;height:100%;background:#0e1117}#chat{height:100%}</style></head>
+    <body><div id="chat"></div>
+    <script src="https://api.evolus.ai/widget/v1/evolus-widget.min.js" data-token="wgt_xV1nK9S9HMN81oCMH5VTch73eW8Z2hd"
+            data-mode="inline" data-target="#chat" data-min-height="480" data-lang="en" defer></script>
+    </body></html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: widget
+  namespace: compressor-copilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: widget}
+  template:
+    metadata:
+      labels: {app: widget}
+    spec:
+      containers:
+        - name: nginx
+          image: nginxinc/nginx-unprivileged:1.27-alpine
+          ports: [{containerPort: 8080}]
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          volumeMounts: [{name: html, mountPath: /usr/share/nginx/html/widget}]
+      volumes: [{name: html, configMap: {name: widget-html}}]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: widget
+  namespace: compressor-copilot
+spec:
+  selector: {app: widget}
+  ports: [{port: 80, targetPort: 8080}]
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: widget
+  namespace: compressor-copilot
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: agenticai-compressor.brainupgrade.in
+      http:
+        paths:
+          - path: /widget/
+            pathType: Prefix
+            backend:
+              service: {name: widget, port: {number: 80}}

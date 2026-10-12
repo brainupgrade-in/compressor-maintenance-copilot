@@ -1,0 +1,19 @@
+{
+ "v": 4,
+ "createdOnFiles": {"v": 1, "at": "2026-10-13T01:20:00Z"},
+ "lists": "css",
+ "title": "Compressor Maintenance Copilot",
+ "order": ["cover", "problem", "flow", "results", "agent", "safety", "stack", "second", "value", "close"],
+ "sections": {
+  "s1": {"description": "The problem: faults found only when the machine stops", "start": "cover"},
+  "s2": {"description": "How it works and what it caught on real data", "start": "flow"},
+  "s3": {"description": "What the maintenance lead gets, and the safety rules", "start": "agent"},
+  "s4": {"description": "Built on AMD and Evolus, generalises to a second machine", "start": "stack"},
+  "s5": {"description": "Why it matters and what is next", "start": "value"}
+ },
+ "faces": {
+  "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300..700&family=IBM+Plex+Mono:wght@400;600&display=swap"},
+  "ibm-plex-mono": {"family": "IBM Plex Mono", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300..700&family=IBM+Plex+Mono:wght@400;600&display=swap"}
+ },
+ "designSystems": []
+}
