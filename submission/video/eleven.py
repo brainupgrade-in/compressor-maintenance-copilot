@@ -8,6 +8,7 @@ import json
 import os
 import sys
 import urllib.parse
+import urllib.error
 import urllib.request
 
 ENV_FILE = os.environ.get("ELEVENLABS_ENV_FILE") or os.path.join(os.path.dirname(__file__), "../../.env")
@@ -19,8 +20,11 @@ API = "https://api.elevenlabs.io"
 def call(path, body=None):
     req = urllib.request.Request(API + path, data=json.dumps(body).encode() if body else None,
                                  headers={"xi-api-key": KEY, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        raise SystemExit(f"ElevenLabs {e.code}: {e.read().decode()[:400]}")
 
 
 if sys.argv[1] == "find":

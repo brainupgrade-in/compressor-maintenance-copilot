@@ -48,9 +48,10 @@ per-failure-mode classifiers) shows that the same flow generalises.
 Built with Python, scikit-learn, Streamlit, the Evolus REST API (agent, knowledge library, workflow) and
 AMD Token Factory. Open source under MIT; the manual and work orders are synthetic and labelled so.
 
-## Links (to fill)
-- Public GitHub repo: (needs the user's yes to publish)
+## Links and files
+- Public GitHub repo: https://github.com/brainupgrade-in/compressor-maintenance-copilot
 - Demo app URL: https://agenticai-compressor.brainupgrade.in
-- Demo video (MP4 ≤ 5 min, < 300 MB): to record
-- Slides (PDF): to build
-- Cover image (16:9 PNG/JPG): to make
+- Demo video: `submission/video/build/compressor-copilot-demo.mp4` (4:35, 52 MB, not in git; rebuild with
+  `submission/video/assemble.py`)
+- Slides: export the PDF from the deck artifact (Download); source in `submission/deck/`
+- Cover image: `submission/cover.png` / `submission/cover.jpg` (1920x1080)
